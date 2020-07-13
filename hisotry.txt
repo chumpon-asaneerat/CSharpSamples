@@ -5,8 +5,10 @@ Update 2020-07-13 #10
 Update 2020-07-13 #9
 - 
 
+[commited]
 Update 2020-07-13 #8
-- 
+- Update SQLite and Dapper sample prroject #8.
+  - Test add 20000 records from 2 processes.
 
 [commited]
 Update 2020-07-13 #7
