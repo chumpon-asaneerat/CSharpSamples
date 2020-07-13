@@ -15,8 +15,10 @@ Update 2020-07-14 #1
 - 
 
 --------------------------------------------------------------------------------------------
+[commited]
 Update 2020-07-13 #12
-- 
+- Update SQLite and RepoDB sample project #3.
+  - Fixed required assembly reference.
 
 [commited]
 Update 2020-07-13 #11
