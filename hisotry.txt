@@ -1,6 +1,14 @@
 --------------------------------------------------------------------------------------------
-Update 2020-07-13 #10
+Update 2020-07-13 #12
 - 
+
+Update 2020-07-13 #11
+- 
+
+[commited]
+Update 2020-07-13 #10
+- Update SQLite and RepoDB sample project #2.
+  - Remove unused assembly reference.
 
 [commited]
 Update 2020-07-13 #9
