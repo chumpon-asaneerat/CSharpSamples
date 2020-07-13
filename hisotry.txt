@@ -15,6 +15,16 @@ Update 2020-07-14 #1
 - 
 
 --------------------------------------------------------------------------------------------
+Update 2020-07-13 #15
+- 
+
+Update 2020-07-13 #14
+- 
+
+[commited]
+Update 2020-07-13 #13
+- Update SQLite and RepoDB sample 2 project #1.
+
 [commited]
 Update 2020-07-13 #12
 - Update SQLite and RepoDB sample project #3.
