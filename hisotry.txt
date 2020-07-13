@@ -8,8 +8,11 @@ Update 2020-07-13 #9
 Update 2020-07-13 #8
 - 
 
+[commited]
 Update 2020-07-13 #7
-- 
+- Update SQLite and Dapper sample prroject #7.
+  - Update sample database add MyRecord Table.
+  - Test connection string.
 
 [commited]
 Update 2020-07-13 #6
