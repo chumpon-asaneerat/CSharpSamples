@@ -2,8 +2,11 @@
 Update 2020-07-13 #10
 - 
 
+[commited]
 Update 2020-07-13 #9
-- 
+- Update SQLite and Dapper sample prroject #9.
+  - Add FastCRUD packages and replace code.
+- Add SQLite and RepoDB sample project #1.
 
 [commited]
 Update 2020-07-13 #8

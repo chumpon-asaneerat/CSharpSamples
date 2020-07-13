@@ -13,12 +13,10 @@ using System.Windows.Forms;
 #endregion
 
 using System.Data.SQLite;
-using Dapper;
-using Dapper.FastCrud;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using RepoDb;
+using RepoDb.Attributes;
 
-namespace SQLiteAndDapper
+namespace SQLiteAndRepoDb
 {
     public partial class Form1 : Form
     {
@@ -36,8 +34,7 @@ namespace SQLiteAndDapper
             List<MyRecord> items;
             if (null != conn)
             {
-                //items = conn.Query<MyRecord>("Select * From MyRecord").ToList();
-                items = conn.Find<MyRecord>().ToList();
+                items = conn.QueryAll<MyRecord>().ToList();
             }
             else
             {
@@ -49,6 +46,8 @@ namespace SQLiteAndDapper
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            SqLiteBootstrap.Initialize();
+
             builder.DataSource = "./sample.db";
             builder.BusyTimeout = 5000;
             builder.DateTimeFormat = SQLiteDateFormats.InvariantCulture;
@@ -62,8 +61,6 @@ namespace SQLiteAndDapper
 
             conn = new SQLiteConnection(connStr);
             conn.Open();
-
-            OrmConfiguration.DefaultDialect = SqlDialect.SqLite;
 
             RefreshGrid();
         }
@@ -81,17 +78,18 @@ namespace SQLiteAndDapper
         private void button1_Click(object sender, EventArgs e)
         {
             if (null == conn) return;
-            //List<MyRecord> items = new List<MyRecord>();
-            for (int i = 0; i < 20000; i++)
-            {
-                MyRecord inst = new MyRecord();
-                inst.Data = "Data-" + i.ToString("D5");
-                inst.DOB = DateTime.Now;
 
-                //conn.Execute("INSERT INTO MyRecord(Data, DOB) VALUES(@Data, @DOB)", inst);
-                conn.Insert<MyRecord>(inst);
+            var tran = conn.BeginTransaction();
+            for (int i = 0; i < 20000; i++)
+            {                
+                conn.Insert(new MyRecord()
+                {
+                    Data = "Data-" + i.ToString("D5"),
+                    DOB = DateTime.Now
+                });
             }
-            
+            tran.Commit();
+
             RefreshGrid();
         }
 
@@ -103,19 +101,15 @@ namespace SQLiteAndDapper
         private void button3_Click(object sender, EventArgs e)
         {
             if (null == conn) return;
-            //conn.Execute("DELETE FROM MyRecord");
-            conn.BulkDelete<MyRecord>();
+            conn.DeleteAll<MyRecord>();
             RefreshGrid();
         }
     }
 
-    [Table("MyRecord")]
     public class MyRecord
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
+        [Identity]
         public int Id { get; set; }
-
         public string Data { get; set; }
         public DateTime DOB { get; set; }
     }
